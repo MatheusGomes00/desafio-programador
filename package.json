@@ -1,19 +1,16 @@
 {
   "name": "desafio-programador",
   "version": "1.0.0",
+  "type": "module",
+  "description": "Desafio técnico para programadores - Quick Filler: Extração de dados de PDFs (cartão de ponto e holerite) com geração de planilha estruturada",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/quick-filler/desafio-programador.git"
-  },
-  "author": "Quick Filler <contato@quickfiller.org>",
-  "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/quick-filler/desafio-programador/issues"
-  },
-  "homepage": "https://github.com/quick-filler/desafio-programador#readme",
-  "description": "Desafio técnico para programadores - Quick Filler: Extração de dados de PDFs (cartão de ponto e holerite) com geração de planilha estruturada"
+  "dependencies": {
+    "pdf-parse-new": "^1.4.1",
+    "prompt-sync": "^4.2.0",
+    "xlsx": "^0.18.5"
+  }
+  
 }
