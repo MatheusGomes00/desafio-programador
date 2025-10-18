@@ -1,7 +1,7 @@
 import fs from "fs";
 import pdf from "pdf-parse-new";
 
-export async function extrairRegistros(caminhoPDF) {
+export async function extrairRegistrosPonto(caminhoPDF) {
     const texto = await recuperarTexto(caminhoPDF);
     const linhasClassificadas = recuperarLinhas(texto);
     const registros = gerarRegistros(linhasClassificadas);
@@ -9,7 +9,7 @@ export async function extrairRegistros(caminhoPDF) {
     return registros;
 }
 
-async function recuperarTexto(caminhoPDF) {
+export async function recuperarTexto(caminhoPDF) {
     const dataBuffer = fs.readFileSync(caminhoPDF);
     const data = await pdf(dataBuffer);
     return data.text;
