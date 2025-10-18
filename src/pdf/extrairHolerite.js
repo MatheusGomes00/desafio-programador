@@ -2,12 +2,16 @@ import fs from "fs";
 import pdf from "pdf-parse-new";
 
 export async function extrairRegistrosHolerite(caminhoPDF) {
-    const texto = await recuperarTexto(caminhoPDF);
-    const linhasFiltradas = recuperarLinhas(texto);
-    const registros = extrairBlocos(linhasFiltradas);
-    
-    //console.log(registros);
-    return registros;
+    try {
+        const texto = await recuperarTexto(caminhoPDF);
+        const linhasFiltradas = recuperarLinhas(texto);
+        const registros = extrairBlocos(linhasFiltradas);
+        
+        //console.log(registros);
+        return registros;
+    } catch (erro) {
+        throw new Error("\n\nErro ao extrair registros do pdf.")
+    }
 }
 
 async function recuperarTexto(caminhoPDF) {

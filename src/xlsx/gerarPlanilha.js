@@ -8,6 +8,9 @@ export async function gerarPlanilha(tipo) {
     try {
         const prompt = PromptSync();
         const caminhoPDF = prompt("Digite o caminho do arquivo pdf: ");
+        if(!fs.existsSync(caminhoPDF) || !caminhoPDF.toLocaleLowerCase().endsWith(".pdf")) {
+            throw new Error(`\n\nArquivo não localizado. ${caminhoPDF}`);
+        }
         
         let registros = [];
         if(tipo === "ponto"){
@@ -17,26 +20,27 @@ export async function gerarPlanilha(tipo) {
         }
 
         if(!registros || !Array.isArray(registros) || registros.length === 0) {
-            console.error("Nenhum registro encontrado para gerar a planilha.");
-            return;
+            throw new Error("\n\nErro interno. Nenhum registro encontrado para gerar a planilha.");
         }
 
-        XLSX.set_fs(fs);
-        const workSheet = XLSX.utils.json_to_sheet(registros);
-        const workBook = XLSX.utils.book_new();
+        try {
+            XLSX.set_fs(fs);
+            const workSheet = XLSX.utils.json_to_sheet(registros);
+            const workBook = XLSX.utils.book_new();
 
-        if(tipo === "ponto"){
-            XLSX.utils.book_append_sheet(workBook, workSheet, "Cartao-Ponto");
-            XLSX.writeFileXLSX(workBook, "./conteudo/Cartao-Ponto-01.xlsx");
-        } else if (tipo === "holerite") {
-            XLSX.utils.book_append_sheet(workBook, workSheet, "Holerite");
-            XLSX.writeFileXLSX(workBook, "./conteudo/Holerite-01.xlsx");
+            if(tipo === "ponto"){
+                XLSX.utils.book_append_sheet(workBook, workSheet, "Cartao-Ponto");
+                XLSX.writeFileXLSX(workBook, "./conteudo/Cartao-Ponto-01.xlsx");
+            } else if (tipo === "holerite") {
+                XLSX.utils.book_append_sheet(workBook, workSheet, "Holerite");
+                XLSX.writeFileXLSX(workBook, "./conteudo/Holerite-01.xlsx");
+            }
+        } catch (erro) {
+            throw new Error("\n\nErro ao gerar planilha XLSX.")
         }
 
-        console.clear;
-
-        console.log("\n\nArquivo .XLSX gerado na pasta conteudo do diretorio raiz deste projeto");
+        console.log("\n\nArquivo .XLSX gerado na pasta conteudo do diretorio raiz deste projeto.");
     } catch (erro) {
-        console.error("Erro ao gerar planilha:", erro );
+        console.log(erro.message);
     }
 }

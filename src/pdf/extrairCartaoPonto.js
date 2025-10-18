@@ -2,11 +2,15 @@ import fs from "fs";
 import pdf from "pdf-parse-new";
 
 export async function extrairRegistrosPonto(caminhoPDF) {
-    const texto = await recuperarTexto(caminhoPDF);
-    const linhasClassificadas = recuperarLinhas(texto);
-    const registros = gerarRegistros(linhasClassificadas);
-    //console.log(linhasClassificadas);
-    return registros;
+    try {
+        const texto = await recuperarTexto(caminhoPDF);
+        const linhasClassificadas = recuperarLinhas(texto);
+        const registros = gerarRegistros(linhasClassificadas);
+        //console.log(linhasClassificadas);
+        return registros;
+    } catch (erro) {
+        throw new Error("\n\nErro ao extrair registros do pdf.")
+    }
 }
 
 export async function recuperarTexto(caminhoPDF) {
