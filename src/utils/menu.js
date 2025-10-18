@@ -1,7 +1,6 @@
-import PromptSync from "prompt-sync";
-import { gerarPlanilhaPonto } from "../xlsx/gerarPlanilhaPonto.js";
+import { gerarPlanilha } from "../xlsx/gerarPlanilha.js";
+import { prompt, fecharReadLine } from "./readlineFunc.js"
 
-const prompt = PromptSync();
 
 export async function menu() {
     
@@ -9,19 +8,20 @@ export async function menu() {
     while (true) {
         
         textoMenu();
-        opcao = Number(prompt("Opção: "));
+        opcao = Number(await prompt("Opção: "));
         switch (opcao) {
             case 1: 
-                await gerarPlanilhaPonto();
+                await gerarPlanilha("ponto");
                 break;
             case 2: 
-                console.log("Em desenvolvimento.");
+                await gerarPlanilha("holerite");
                 break;
             case 3:
-                console.log("Saindo...")
+                console.log("\n\nSaindo...")
+                fecharReadLine();
                 return;
             default:
-                console.log("Opcao invalida, digite uma opção: 1 folha de ponto, 2 holerite.")
+                console.log("\n\nOpcao invalida, digite uma opção: 1 folha de ponto, 2 holerite.")
         }
     }
 }
