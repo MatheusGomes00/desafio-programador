@@ -4,6 +4,20 @@ Este projeto tem como objetivo converter arquivos **PDF** (como cartões de pont
 
 ---
 
+## Solução Aplicada
+* Menu interativo em CLI para direcionar o fluxo de extração e exportação.
+* Extração do texto do PDF com a biblioteca **`pdf-parse-new`**.
+* Tratamento e formatação dos dados utilizando funções JavaScript e Expressões Regulares (regex).
+* Geração do arquivo **`.xlsx`** com a biblioteca **`xlsx`**.
+
+### Fluxo do processo
+1. Usuário seleciona o tipo de documento no menu.
+2. O sistema extrai o texto bruto do PDF.
+3. As linhas são filtradas e estruturadas conforme o layout do documento.
+4. Os registros são exportados para uma planilha Ecxel.
+	
+---
+
 ## Instalação
 
 ### 1. Clone o repositório

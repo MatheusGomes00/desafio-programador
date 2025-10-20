@@ -27,6 +27,7 @@ export async function recuperarTexto(caminhoPDF) {
     }
 }
 
+// recupera linhas do pdf e classifica elas para posterior tratamento
 export function recuperarLinhas(texto) {
     try {
     const linhas = texto.trim().split("\n");
@@ -48,6 +49,7 @@ export function recuperarLinhas(texto) {
     }
 }
 
+// trata os dados da lista classificada e gera registros na formatação esperada
 export function gerarRegistros(linhasClassificadas) {
     try{
         let mesAtual = null;
