@@ -8,7 +8,7 @@ export async function menu() {
     while (true) {
         
         textoMenu();
-        opcao = Number(await prompt("Opção: "));
+        opcao = Number(await prompt("\nOpção: "));
         switch (opcao) {
             case 1: 
                 await gerarPlanilha("ponto");
@@ -26,7 +26,7 @@ export async function menu() {
     }
 }
 
-function textoMenu() {
+export function textoMenu() {
     return console.log("\nConversor PDF -> XLSX \n"+
         "Digite uma opção abaixo: \n" +
         "1 - Cartão de Ponto \n" +

@@ -1,15 +1,14 @@
-# Arquivos de teste (serão fornecidos separadamente)
-*.pdf
+# Arquivos de teste
 modelo_planilha.*
 modelo.*
+*coverage/
 
-# Arquivos de saída (podem ser recriados)
+# Arquivos de saída
 output/*.xlsx
 output/*.xls
 output/*.ods
 output/*.csv
 resultado.*
-*.xlsx
 *.xls
 *.ods
 
@@ -19,6 +18,7 @@ venv/
 env/
 __pycache__/
 *.pyc
+package-lock.json
 
 # IDEs
 .vscode/
