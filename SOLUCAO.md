@@ -83,8 +83,9 @@ npm run test
 ---
 
 ## Exemplos de Uso
+<img src="./conteudo/parserImg.jpg">
 
----
+
 
 ## Observações Importantes
 
